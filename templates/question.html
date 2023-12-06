@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flash-messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+<h1>Question {{ question_number }}</h1>
+
+<form method="POST" action="{{ url_for('question', question_number=question_number) }}">
+  <p>{{ question_text }}</p>
+  <input type="text" name="answer" required>
+  <button type="submit">Next</button>
+</form>
+{% endblock %}
